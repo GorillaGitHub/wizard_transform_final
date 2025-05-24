@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,43 +13,64 @@
       text-align: center;
       padding: 20px;
     }
+
     button {
-      font-size: 24px;
+      font-size: 28px;
       margin: 10px;
-      padding: 20px 40px;
-      border-radius: 10px;
-      background-color: crimson;
+      padding: 25px 50px;
+      border-radius: 12px;
       color: white;
       border: none;
       cursor: pointer;
     }
+
+    #main-button {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #style-buttons {
+      display: none;
+      margin-top: 30px;
+    }
+
+    #style-buttons button {
+      display: inline-block;
+      width: 45%;
+      margin: 10px auto;
+      font-size: 26px;
+    }
+
     #text-container {
-      margin-top: 40px;
-      font-size: 28px;
+      margin-top: 60px;
+      font-size: 30px;
       color: #0ff;
       min-height: 2em;
     }
   </style>
 </head>
+
 <body>
   <h1>仮面ライダーウィザード変身</h1>
   <div id="main-button">
     <button onclick="startHenshin()">変身準備</button>
   </div>
-  <div id="style-buttons" style="display: none;"></div>
+  <div id="style-buttons"></div>
   <div id="text-container"></div>
 
   <script>
     const styles = [
-      {name: "フレイム", key: "flame", text: "ヒー ヒー ヒー ヒー！フレイム！"},
-      {name: "ウォーター", key: "water", text: "スイ スイ スイ スイ！ウォーター！"},
-      {name: "ハリケーン", key: "hurricane", text: "フー フー フー フー！ハリケーン！"},
-      {name: "ランド", key: "land", text: "ドドドドーン！ランド！"},
-      {name: "フレイムドラゴン", key: "flame_dragon", text: "フレイム！ドラゴン！"},
-      {name: "ウォータードラゴン", key: "water_dragon", text: "ウォーター！ドラゴン！"},
-      {name: "ハリケーンドラゴン", key: "hurricane_dragon", text: "ハリケーン！ドラゴン！"},
-      {name: "ランドドラゴン", key: "land_dragon", text: "ランド！ドラゴン！"},
-      {name: "インフィニティ", key: "infinity", text: "シャイニング ストライク！インフィニティー！"}
+      { name: "フレイム", key: "flame", text: "ヒー ヒー ヒー ヒー！フレイム！", color: "crimson" },
+      { name: "ウォーター", key: "water", text: "スイ スイ スイ スイ！ウォーター！", color: "dodgerblue" },
+      { name: "ハリケーン", key: "hurricane", text: "フー フー フー フー！ハリケーン！", color: "limegreen" },
+      { name: "ランド", key: "land", text: "ドドドドーン！ランド！", color: "goldenrod" },
+      { name: "フレイムドラゴン", key: "flame_dragon", text: "フレイム！ドラゴン！", color: "orangered" },
+      { name: "ウォータードラゴン", key: "water_dragon", text: "ウォーター！ドラゴン！", color: "skyblue" },
+      { name: "ハリケーンドラゴン", key: "hurricane_dragon", text: "ハリケーン！ドラゴン！", color: "mediumseagreen" },
+      { name: "ランドドラゴン", key: "land_dragon", text: "ランド！ドラゴン！", color: "orange" },
+      { name: "インフィニティ", key: "infinity", text: "シャイニング ストライク！インフィニティー！", color: "violet" }
     ];
 
     let loopAudio = null;
@@ -82,6 +104,7 @@
       styles.forEach(style => {
         const btn = document.createElement("button");
         btn.textContent = style.name;
+        btn.style.backgroundColor = style.color;
         btn.onclick = () => doTransform(style);
         styleBtns.appendChild(btn);
       });
@@ -107,4 +130,5 @@
     }
   </script>
 </body>
+
 </html>
