@@ -6,94 +6,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>仮面ライダーウィザード変身</title>
   <style>
+    html,
     body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       background-color: #000;
       color: #fff;
       font-family: sans-serif;
-      text-align: center;
-      padding: 20px;
     }
 
-    button {
-      font-size: 28px;
-      margin: 10px;
-      padding: 25px 50px;
-      border-radius: 12px;
+    #main-button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #main-button button {
+      font-size: 60px;
+      padding: 60px 100px;
+      border-radius: 40px;
+      background-color: crimson;
       color: white;
       border: none;
       cursor: pointer;
+      box-shadow: 0 0 30px crimson;
+      transition: transform 0.2s ease;
     }
 
-    #main-button {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
+    #main-button button:active {
+      transform: scale(0.95);
+    }
+
+    #text-container-wrapper {
+      display: none;
+      text-align: center;
+      padding: 40px 20px 10px;
+    }
+
+    #text-container {
+      font-size: 36px;
+      white-space: pre-line;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     #style-buttons {
       display: none;
-      margin-top: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     #style-buttons button {
-      display: inline-block;
       width: 45%;
-      margin: 10px auto;
-      font-size: 26px;
+      font-size: 28px;
+      padding: 25px;
+      border-radius: 16px;
+      border: none;
+      color: white;
+      cursor: pointer;
     }
 
-    #text-container {
-      margin-top: 60px;
-      font-size: 30px;
-      color: #0ff;
-      min-height: 2em;
+    h1 {
+      text-align: center;
+      margin: 20px 0;
     }
   </style>
 </head>
 
 <body>
   <h1>仮面ライダーウィザード変身</h1>
-  <div id="main-button">
-    <button onclick="startHenshin()">変身準備</button>
+
+  <div id="main-button-container">
+    <div id="main-button">
+      <button onclick="startHenshin()">変身準備</button>
+    </div>
   </div>
-  <div id="style-buttons"></div>
-  <div id="text-container"></div>
+
+  <div id="text-container-wrapper">
+    <div id="text-container"></div>
+    <div id="style-buttons"></div>
+  </div>
 
   <script>
     const styles = [
-      { name: "フレイム", key: "flame", text: "ヒー ヒー ヒー ヒー！フレイム！", color: "crimson" },
-      { name: "ウォーター", key: "water", text: "スイ スイ スイ スイ！ウォーター！", color: "dodgerblue" },
-      { name: "ハリケーン", key: "hurricane", text: "フー フー フー フー！ハリケーン！", color: "limegreen" },
-      { name: "ランド", key: "land", text: "ドドドドーン！ランド！", color: "goldenrod" },
-      { name: "フレイムドラゴン", key: "flame_dragon", text: "フレイム！ドラゴン！", color: "orangered" },
-      { name: "ウォータードラゴン", key: "water_dragon", text: "ウォーター！ドラゴン！", color: "skyblue" },
-      { name: "ハリケーンドラゴン", key: "hurricane_dragon", text: "ハリケーン！ドラゴン！", color: "mediumseagreen" },
-      { name: "ランドドラゴン", key: "land_dragon", text: "ランド！ドラゴン！", color: "orange" },
-      { name: "インフィニティ", key: "infinity", text: "シャイニング ストライク！インフィニティー！", color: "violet" }
+      { name: "🔥 フレイム", key: "flame", text: "フレイム　プリーズ\nヒーヒー　ヒーヒーヒー！", color: "crimson" },
+      { name: "💧 ウォーター", key: "water", text: "ウォーター!　プリーズ\nスイー スイー スイー スイー", color: "dodgerblue" },
+      { name: "🌪 ハリケーン", key: "hurricane", text: "ハリケーン　プリーズ\nフーフー　フーフーフーフー！", color: "limegreen" },
+      { name: "🪨 ランド", key: "land", text: "ランド　プリーズ\nドッ ドッ ドッ ドドドンドン\nドッ ドッ ドン", color: "goldenrod" },
+      { name: "🐉🔥 フレイムドラゴン", key: "flame_dragon", text: "フレイム・ドラゴン！\nボー　ボー　ボーボーボー！", color: "orangered" },
+      { name: "🐉💧 ウォータードラゴン", key: "water_dragon", text: "ウォーター・ドラゴン！\nザバザババシャーン\nザブンザブーン！", color: "skyblue" },
+      { name: "🐉🌪 ハリケーンドラゴン", key: "hurricane_dragon", text: "ハリケーン・ドラゴン！\nビュー　ビュー\nビュービュービュビュー！", color: "mediumseagreen" },
+      { name: "🐉🪨 ランドドラゴン", key: "land_dragon", text: "ランド・ドラゴン！\nダン　デン　ドン ズ ド ゴーン！\nダン　デン　ド ゴーン！", color: "orange" },
+      { name: "🌈✨ インフィニティ", key: "infinity", text: "イーンフィニティー！プルルィイーズ！！\nヒースイフードー\nボーザバビュー ドゴーン！！", color: "violet" }
     ];
 
     let loopAudio = null;
 
-    const mainBtn = document.getElementById("main-button");
-    const styleBtns = document.getElementById("style-buttons");
+    const mainButtonContainer = document.getElementById("main-button-container");
+    const textContainerWrapper = document.getElementById("text-container-wrapper");
     const textContainer = document.getElementById("text-container");
+    const styleBtns = document.getElementById("style-buttons");
 
     function startHenshin() {
-      mainBtn.style.display = "none";
-      textContainer.textContent = "ベルトをタッチ！";
+      mainButtonContainer.style.display = "none";
+      textContainerWrapper.style.display = "block";
+      textContainer.style.color = "#0ff";
+      textContainer.textContent = "ドライバーオン　プリーズ";
 
       const beltAudio = new Audio("sounds/belt_touch.mp3");
       beltAudio.play();
 
       beltAudio.onended = () => {
-        textContainer.textContent = "シャバドゥビ〜タッチ変身！";
+        textContainer.textContent = "シャバドゥビ　タッチ　ヘンシン！";
         loopAudio = new Audio("sounds/shabadoobie.mp3");
         loopAudio.loop = true;
         loopAudio.play();
 
         setTimeout(() => {
           textContainer.textContent = "スタイルを選べ！";
+          textContainer.style.color = "#0ff";
           showStyleButtons();
         }, 2500);
       };
@@ -108,7 +144,7 @@
         btn.onclick = () => doTransform(style);
         styleBtns.appendChild(btn);
       });
-      styleBtns.style.display = "block";
+      styleBtns.style.display = "flex";
     }
 
     function doTransform(style) {
@@ -117,15 +153,17 @@
         loopAudio.currentTime = 0;
       }
 
-      styleBtns.style.display = "none";
+      textContainer.style.color = style.color;
       textContainer.textContent = style.text;
+      styleBtns.style.display = "none";
 
       const styleAudio = new Audio(`sounds/${style.key}.mp3`);
       styleAudio.play();
 
       styleAudio.onended = () => {
+        textContainerWrapper.style.display = "none";
         textContainer.textContent = "";
-        mainBtn.style.display = "block";
+        mainButtonContainer.style.display = "flex";
       };
     }
   </script>
