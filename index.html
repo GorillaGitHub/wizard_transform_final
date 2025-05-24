@@ -63,21 +63,24 @@
     #style-buttons {
       display: none;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 10px;
-      max-width: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 10px;
     }
 
     #style-buttons button {
-      font-size: 18px;
-      padding: 15px;
+      font-size: 16px;
+      padding: 14px 10px;
       border-radius: 14px;
       border: none;
       color: white;
       cursor: pointer;
-      white-space: nowrap;
+      white-space: normal;
+      word-break: break-word;
+      line-height: 1.3;
+      text-align: center;
     }
   </style>
 </head>
@@ -102,11 +105,11 @@
       { name: "💧 ウォーター", key: "water", text: "ウォーター!　プリーズ\nスイー スイー スイー スイー", color: "dodgerblue" },
       { name: "🌪 ハリケーン", key: "hurricane", text: "ハリケーン　プリーズ\nフーフー　フーフーフーフー！", color: "limegreen" },
       { name: "🪨 ランド", key: "land", text: "ランド　プリーズ\nドッ ドッ ドッ ドドドンドン\nドッ ドッ ドン", color: "goldenrod" },
-      { name: "🐉🔥 フレイムドラゴン", key: "flame_dragon", text: "フレイム・ドラゴン！\nボー　ボー　ボーボーボー！", color: "orangered" },
-      { name: "🐉💧 ウォータードラゴン", key: "water_dragon", text: "ウォーター・ドラゴン！\nザバザババシャーン\nザブンザブーン！", color: "skyblue" },
-      { name: "🐉🌪 ハリケーンドラゴン", key: "hurricane_dragon", text: "ハリケーン・ドラゴン！\nビュー　ビュー\nビュービュービュビュー！", color: "mediumseagreen" },
-      { name: "🐉🪨 ランドドラゴン", key: "land_dragon", text: "ランド・ドラゴン！\nダン　デン　ドン ズ ド ゴーン！\nダン　デン　ド ゴーン！", color: "orange" },
-      { name: "🌈✨ インフィニティ", key: "infinity", text: "イーンフィニティー！プルルィイーズ！！\nヒースイフードー\nボーザバビュー ドゴーン！！", color: "violet" }
+      { name: "🐉🔥\nフレイムドラゴン", key: "flame_dragon", text: "フレイム・ドラゴン！\nボー　ボー　ボーボーボー！", color: "orangered" },
+      { name: "🐉💧\nウォータードラゴン", key: "water_dragon", text: "ウォーター・ドラゴン！\nザバザババシャーン\nザブンザブーン！", color: "skyblue" },
+      { name: "🐉🌪\nハリケーンドラゴン", key: "hurricane_dragon", text: "ハリケーン・ドラゴン！\nビュー　ビュー\nビュービュービュビュー！", color: "mediumseagreen" },
+      { name: "🐉🪨\nランドドラゴン", key: "land_dragon", text: "ランド・ドラゴン！\nダン　デン　ドン ズ ド ゴーン！\nダン　デン　ド ゴーン！", color: "orange" },
+      { name: "🌈✨\nインフィニティ", key: "infinity", text: "イーンフィニティー！プルルィイーズ！！\nヒースイフードー\nボーザバビュー ドゴーン！！", color: "violet" }
     ];
 
     let loopAudio = null;
