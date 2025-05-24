@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仮面ライダーウィザード変身</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      font-size: 24px;
+      margin: 10px;
+      padding: 20px 40px;
+      border-radius: 10px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #text-container {
+      margin-top: 40px;
+      font-size: 28px;
+      color: #0ff;
+      min-height: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>仮面ライダーウィザード変身</h1>
+  <div id="main-button">
+    <button onclick="startHenshin()">変身準備</button>
+  </div>
+  <div id="style-buttons" style="display: none;"></div>
+  <div id="text-container"></div>
+
+  <script>
+    const styles = [
+      {name: "フレイム", key: "flame", text: "ヒー ヒー ヒー ヒー！フレイム！"},
+      {name: "ウォーター", key: "water", text: "スイ スイ スイ スイ！ウォーター！"},
+      {name: "ハリケーン", key: "hurricane", text: "フー フー フー フー！ハリケーン！"},
+      {name: "ランド", key: "land", text: "ドドドドーン！ランド！"},
+      {name: "フレイムドラゴン", key: "flame_dragon", text: "フレイム！ドラゴン！"},
+      {name: "ウォータードラゴン", key: "water_dragon", text: "ウォーター！ドラゴン！"},
+      {name: "ハリケーンドラゴン", key: "hurricane_dragon", text: "ハリケーン！ドラゴン！"},
+      {name: "ランドドラゴン", key: "land_dragon", text: "ランド！ドラゴン！"},
+      {name: "インフィニティ", key: "infinity", text: "シャイニング ストライク！インフィニティー！"}
+    ];
+
+    let loopAudio = null;
+
+    const mainBtn = document.getElementById("main-button");
+    const styleBtns = document.getElementById("style-buttons");
+    const textContainer = document.getElementById("text-container");
+
+    function startHenshin() {
+      mainBtn.style.display = "none";
+      textContainer.textContent = "ベルトをタッチ！";
+
+      const beltAudio = new Audio("sounds/belt_touch.mp3");
+      beltAudio.play();
+
+      beltAudio.onended = () => {
+        textContainer.textContent = "シャバドゥビ〜タッチ変身！";
+        loopAudio = new Audio("sounds/shabadoobie.mp3");
+        loopAudio.loop = true;
+        loopAudio.play();
+
+        setTimeout(() => {
+          textContainer.textContent = "スタイルを選べ！";
+          showStyleButtons();
+        }, 2500);
+      };
+    }
+
+    function showStyleButtons() {
+      styleBtns.innerHTML = "";
+      styles.forEach(style => {
+        const btn = document.createElement("button");
+        btn.textContent = style.name;
+        btn.onclick = () => doTransform(style);
+        styleBtns.appendChild(btn);
+      });
+      styleBtns.style.display = "block";
+    }
+
+    function doTransform(style) {
+      if (loopAudio) {
+        loopAudio.pause();
+        loopAudio.currentTime = 0;
+      }
+
+      styleBtns.style.display = "none";
+      textContainer.textContent = style.text;
+
+      const styleAudio = new Audio(`sounds/${style.key}.mp3`);
+      styleAudio.play();
+
+      styleAudio.onended = () => {
+        textContainer.textContent = "";
+        mainBtn.style.display = "block";
+      };
+    }
+  </script>
+</body>
+</html>
