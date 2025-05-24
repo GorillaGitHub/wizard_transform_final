@@ -14,6 +14,14 @@
       background-color: #000;
       color: #fff;
       font-family: sans-serif;
+      overflow-y: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 10px;
+      font-size: 28px;
+      word-break: keep-all;
     }
 
     #main-button-container {
@@ -24,8 +32,8 @@
     }
 
     #main-button button {
-      font-size: 60px;
-      padding: 60px 100px;
+      font-size: 48px;
+      padding: 40px 60px;
       border-radius: 40px;
       background-color: crimson;
       color: white;
@@ -42,38 +50,34 @@
     #text-container-wrapper {
       display: none;
       text-align: center;
-      padding: 40px 20px 10px;
+      padding: 30px 10px 10px;
     }
 
     #text-container {
-      font-size: 36px;
+      font-size: 30px;
       white-space: pre-line;
-      text-align: center;
       margin-bottom: 20px;
+      padding: 0 10px;
     }
 
     #style-buttons {
       display: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      max-width: 1000px;
       margin: 0 auto;
+      padding: 10px;
     }
 
     #style-buttons button {
-      width: 45%;
-      font-size: 28px;
-      padding: 25px;
-      border-radius: 16px;
+      font-size: 18px;
+      padding: 15px;
+      border-radius: 14px;
       border: none;
       color: white;
       cursor: pointer;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 20px 0;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -144,7 +148,7 @@
         btn.onclick = () => doTransform(style);
         styleBtns.appendChild(btn);
       });
-      styleBtns.style.display = "flex";
+      styleBtns.style.display = "grid";
     }
 
     function doTransform(style) {
